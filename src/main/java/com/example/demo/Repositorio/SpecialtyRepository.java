@@ -34,4 +34,8 @@ public class SpecialtyRepository {
        return extencionesCrud.save(specialty);
    }
    
+   public void delete(Specialty specialty){
+       extencionesCrud.delete(specialty);
+   }
+   
 }

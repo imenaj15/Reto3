@@ -32,5 +32,9 @@ public class DoctorRepository {
    public Doctor save (Doctor doctor) {
        return extencionesCrud.save(doctor);
    }
+   
+   public void delete(Doctor doctor){
+       extencionesCrud.delete(doctor);
+   }
     
 }

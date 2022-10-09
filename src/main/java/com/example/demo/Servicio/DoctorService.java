@@ -42,4 +42,42 @@ public class DoctorService {
         }
     }
     
+    public Doctor update(Doctor doctor){
+        if(doctor.getId()!=null){
+            Optional<Doctor> e= doctorRepository.getDoctor(doctor.getId());
+            if(!e.isEmpty()){
+                if(doctor.getName()!=null){
+                    e.get().setName(doctor.getName());
+                }
+                if(doctor.getDepartment()!=null){
+                    e.get().setDepartment(doctor.getDepartment());
+                }
+                if(doctor.getYear()!=null){
+                    e.get().setYear(doctor.getYear());
+                }
+                if(doctor.getDescription()!=null){
+                    e.get().setDescription(doctor.getDescription());
+                }
+                if(doctor.getSpecialty()!=null){
+                    e.get().setSpecialty(doctor.getSpecialty());
+                }
+                doctorRepository.save(e.get());
+                return e.get();
+            }else{
+                return doctor;
+            }
+        }else{
+            return doctor;
+        }
+    }
+
+    
+    public boolean deleteDoctor(int id){
+        Boolean d = getDoctor(id).map(doctor -> {
+            doctorRepository.delete(doctor);
+            return true;
+        }).orElse(false);
+        return d;
+    }
+    
 }
